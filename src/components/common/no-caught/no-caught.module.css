@@ -1,0 +1,13 @@
+.phrase {
+    display: flex;
+    width: auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.text {
+    border-radius: 10px ;
+    background: lightgray;
+    font-size: 24px;
+    padding: 16px;
+}

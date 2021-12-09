@@ -1,0 +1,18 @@
+.img {
+    height: auto;
+    width: 100%;
+    background: lightgray;
+}
+
+.content {
+    padding-bottom: 0;
+}
+
+.id {
+    color: grey;
+    font-size: 13px;
+}
+
+.pokName {
+    text-transform: capitalize;
+}

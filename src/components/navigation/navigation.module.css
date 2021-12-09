@@ -1,0 +1,37 @@
+.navigation {
+    top: 0;
+    position: sticky;
+    display: flex;
+    justify-content: space-between;
+    background-color: green;
+    padding-right: 32px;
+    margin-bottom: 16px;
+    z-index: 9999;
+}
+
+.navList {
+    display: flex;
+    align-items: center;
+}
+
+.navList li {
+    box-sizing: border-box;
+}
+
+.static {
+    font-size: 20px;
+    display: flex;
+    color: wheat;
+    padding: 32px 16px;
+    text-decoration: none;
+}
+
+.active {
+    color: white;
+    background-color: darkgreen;
+}
+
+.logo {
+    max-width: 120px;
+    max-height: 84px;
+}

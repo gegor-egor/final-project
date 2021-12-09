@@ -1,0 +1,72 @@
+.name {
+    text-align: center;
+    font-size: 32px;
+    text-transform: capitalize;
+}
+
+.img {
+    width: 100%;
+    height: auto;
+    border: solid black 1px;
+    border-radius: 10px;
+    background: lightgray;
+}
+
+.stats_block {
+    margin-top: 16px;
+    padding: 12px;
+    background: grey;
+    border-radius: 10px;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+}
+.stats > li {
+    flex: 1 1 auto;
+}
+
+.abilities {
+    display: flex;
+    justify-content: space-around;
+    height: auto;
+    width: auto;
+    border-radius: 10px;
+    background: lightskyblue;
+    font-size: 24px;
+}
+
+.abilities_title {
+    color: white;
+}
+
+.abilities_value {
+    padding: 8px 0 8px 0;
+}
+
+.column {
+    padding: 16px;
+}
+
+.type_title {
+    padding-top: 16px;
+    font-size: 24px;
+}
+
+.types {
+    display: flex;
+}
+
+.info {
+    color: white;
+    padding: 8px;
+    margin: 8px 16px 0 0;
+    border-radius: 10px;
+}
+
+.loading {
+    padding-top: 16px;
+    display: flex;
+    justify-content: center;
+}
