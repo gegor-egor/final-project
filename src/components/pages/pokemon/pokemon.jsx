@@ -5,7 +5,9 @@ import { useSelector } from "../../hooks/useSelector";
 import { CircularProgress, Container, Grid } from "@mui/material";
 import { useDispatch } from "../../hooks/useDispatch";
 import styles from './pokemon.module.css'
-
+import female from "../../../assets/images/female.png"
+import male from "../../../assets/images/male.png"
+import genderless from "../../../assets/images/genderless.png"
 
 const colorsDict = {
     'normal': 'grey',
@@ -28,13 +30,18 @@ const colorsDict = {
     'fairy': '#dd7e6b'
 }
 
+const genderImgs = {
+    male: <img src={male} style={{height: "25px", width: "auto"}} />,
+    female: <img src={female} style={{height: "30px", width: "auto"}} />,
+    genderless: <img src={genderless} style={{height: "30px", width: "auto"}} />
+}
+
 export const PokemonPage = () => {
     let { id } = useParams();
     const dispatch = useDispatch()
 
     const pokemon = useSelector(state => state.pokemon.data)
     const gender = useSelector(state => state.pokemon.data?.gender)
-    console.log(gender);
     const isPokemonLoading = useSelector(state => state.pokemon.isLoading)
 
 
@@ -42,25 +49,40 @@ export const PokemonPage = () => {
         dispatch(loadPokemon(dispatch)(id))
     }, [])
 
+    const generateName = (name) => {
+        return name.split("-").map((str) => {
+            let res
+            if (str === "hp") {
+                res = str.toUpperCase()
+            }
+            else {
+                res = str.charAt(0).toUpperCase() + str.slice(1);
+            }
+            return res
+
+        }).join(" ")
+
+    }
+
     const PokemonStat = ({ stat, name }) => {
         const liArr = []
         for (let i = 0; i < 15; i++) {
             const active = Math.round(stat / 15)
-            const listItem = <li style={{ background: (active >= i + 1) ? "lightskyblue" : "white", width: "50px", height: "10px", marginBottom: "2px" }}></li>
+            const listItem = <li className={styles.list_item} style={{ background: (active >= i + 1) ? "lightskyblue" : "white" }}></li>
             liArr.push(listItem)
         }
-        return (<ul>{liArr.reverse()}<li style={{ maxWidth: "50px" }} title={stat}>{name}</li></ul>)
+        return (<ul>{liArr.reverse()}<li className={styles.stat_list} title={stat}>{generateName(name)}</li></ul>)
     }
 
     const PokemonContent = () => {
 
-        return <Grid container spacing={4}>
+        return <Grid className={styles.container} container spacing={4}>
             <Grid className={styles.name} item xs={12}><h2>{pokemon.species.name} №{id.toString().padStart(3, "0")}</h2></Grid>
-            <Grid item md={4}>
+            <Grid item xs={12} md={6}>
                 <img className={styles.img}
                     src={pokemon?.sprites?.other?.['official-artwork']?.front_default} alt="Pokemon" />
                 <div className={styles.stats_block}>
-                    <p>Stats</p>
+                    <p className={styles.stats_title}>Stats</p>
                     <ul className={styles.stats}>
                         {pokemon.stats.map((element, id) => {
                             return <li key={`${id}-stat-name`}>
@@ -70,25 +92,25 @@ export const PokemonPage = () => {
                     </ul>
                 </div>
             </Grid>
-            <Grid item xs={6}md={8}>
-                <div className={styles.abilities}>
+            <Grid item xs={12} md={6}>
+                <div className={styles.abilities_block}>
                     <div>
                         <ul className={styles.column}>
                             <li>
                                 <p className={styles.abilities_title}>Height</p>
-                                <p className={styles.abilities_value}>{pokemon.height}</p>
+                                <p className={styles.abilities_value}>{pokemon.height / 10} m</p>
                             </li>
                             <li>
                                 <p className={styles.abilities_title}>Weight</p>
-                                <p className={styles.abilities_value}>{pokemon.weight}</p>
+                                <p className={styles.abilities_value}>{pokemon.weight / 10} kg</p>
                             </li>
                             <li>
                                 <p className={styles.abilities_title}>Gender</p>
-                                <p className={styles.abilities_value}>{gender.name}</p>
+                                <p className={styles.abilities_value}>{!!gender.length && gender.map(element => <p title={element} key={Math.random()} >{genderImgs[element]}</p>)}</p>
                             </li>
                         </ul>
                     </div>
-                    <div className={styles.abilities}>
+                    <div>
                         <ul className={styles.column}>
                             <li>
                                 <p className={styles.abilities_title}>Abilities</p>
