@@ -31,9 +31,9 @@ const colorsDict = {
 }
 
 const genderImgs = {
-    male: <img src={male} style={{height: "25px", width: "auto"}} />,
-    female: <img src={female} style={{height: "30px", width: "auto"}} />,
-    genderless: <img src={genderless} style={{height: "30px", width: "auto"}} />
+    male: <img src={male} className={styles.gender} />,
+    female: <img src={female} className={styles.gender} />,
+    genderless: <img src={genderless} className={styles.gender} />
 }
 
 export const PokemonPage = () => {

@@ -3,6 +3,7 @@
     position: sticky;
     display: flex;
     justify-content: space-between;
+    text-align: center;
     background-color: green;
     padding-right: 32px;
     margin-bottom: 16px;
@@ -14,9 +15,6 @@
     align-items: center;
 }
 
-.navList li {
-    box-sizing: border-box;
-}
 
 .static {
     font-size: 20px;
